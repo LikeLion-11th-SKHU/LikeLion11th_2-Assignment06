@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Detail</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Detail Page</h1>
+    <hr>   
+    <h3>{{ blog.title }}</h3>
+    <p>{{ blog.pub_date }}</p>
+    <p>{{ blog.body }}</p> 
+    <br>
+    <a href="{% url 'update' blog.id %}">글 수정하기</a>
+    <br>
+    <a href="{% url 'delete' blog.id %}">글 삭제하기</a>
+{% endblock %}
