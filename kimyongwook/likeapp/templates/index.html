@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    {% block title %}
+        <title>Index</title>
+    {% endblock %}    
+</head>
+<body>
+    <nav>
+        <a href="{% url 'create' %}">글 작성하기</a><i class="fas fa-heart"></i>
+        <a href="{% url 'read' %}">글 모아보기</a><i class="fas fa-heart-broken"></i>
+        {% if user.is_active %}
+            {{ user.username }} 님 안녕하세요 <a href="{% url 'logout' %}">로그아웃</a>
+        {% else %}
+            <a href="{% url 'signup' %}">회원가입</a>
+            <a href="{% url 'login' %}">로그인</a><i class="fas fa-sad-cry"></i>
+        {% endif %}
+            <a href="{% url 'mybookmark' %}">북마크</a>
+    </nav>
+    {% block content %}
+        <h1>Index Page</h1>
+        <hr>
+    {% endblock %}
+</body>
+</html>
