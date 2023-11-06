@@ -66,7 +66,10 @@ def bookmark(request, id):
         else:
             blog.bookmark_user.add(request.user)
         return redirect('detail', id=id)
+    return redirect('login')
 
 def mybookmark(request):
-   blogs = Blog.objects.filter(bookmark_user=request.user)
-   return render(request, 'mybookmark.html', {'blogs' : blogs})
+    if request.user.is_authenticated:
+        blogs = Blog.objects.filter(bookmark_user=request.user)
+        return render(request, 'mybookmark.html', {'blogs' : blogs})
+    return redirect('login')
