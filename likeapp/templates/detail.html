@@ -1,17 +1,41 @@
 {% extends 'index.html' %}
 
 {% block title %}
-    <title>Detail</title>
+<title>Detail</title>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
 {% endblock %}
 
 {% block content %}
-    <h1>Detail Page</h1>
-    <hr>   
-    <h3>{{ blog.title }}</h3>
-    <p>{{ blog.pub_date }}</p>
-    <p>{{ blog.body }}</p> 
-    <br>
-    <a href="{% url 'update' blog.id %}">글 수정하기</a>
-    <br>
-    <a href="{% url 'delete' blog.id %}">글 삭제하기</a>
+<h1>Detail Page</h1>
+<hr>
+<h3>{{ blog.title }}</h3>
+<p>{{ blog.pub_date }}</p>
+<p>{{ blog.body }}</p>
+<br>
+
+<div>
+    <form action="{% url 'like' blog.id %}" method='POST'>
+        {% csrf_token %}
+        <button style="border: 0;">
+            {% if user in blog.like_user.all %}
+            <i class="fas fa-heart" style="color: red; font-size: 17px;"></i>
+            {% else %}
+            <i class="far fa-heart" style="color: red; font-size: 17px;"></i>
+            {% endif %}
+        </button>
+        <span>{{ blog.like_user.all|length}}명이 이 글을 좋아합니다.</span>
+    </form>
+</div>
+<div>
+    <form action="{%url 'bookmark' blog.id %}" method="POST">
+        {% csrf_token %}
+        <button style="border: 0;" </form>
+</div>
+
+<a href="{% url 'update' blog.id %}">글 수정하기</a>
+<br>
+<a href="{% url 'delete' blog.id %}">글 삭제하기</a>
 {% endblock %}
