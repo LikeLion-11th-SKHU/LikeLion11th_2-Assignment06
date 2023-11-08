@@ -8,7 +8,8 @@ urlpatterns = [
     path('detail/<str:id>/', views.detail, name = 'detail'),  
     path('update/<str:id>/', views.update, name='update'),
     path('delete/<str:id>/', views.delete, name = 'delete'),
+    path('like/<int:id>', views.like, name='like'),
     path('bookmark/', views.bookmark, name='bookmark'),
-    
-    path('<int:id>/like/', views.like, name='like'),
+    path('mybookmark/', views.mybookmark, name='mybookmark'),
+    path('bookmark/<int:id>/', views.bookmark, name='bookmark'),
 ]

@@ -32,7 +32,15 @@
 <div>
     <form action="{%url 'bookmark' blog.id %}" method="POST">
         {% csrf_token %}
-        <button style="border: 0;" </form>
+        <button style="border: 0;">
+            {% if user in blog.bookmark_user.all %}
+            <i class="fas fa-bookmark" style="color: blue; font-size: 17px;"></i>
+            {% else %}
+            <i class="far fa-bookmark" style="color: blue; font-size: 17px;"></i>
+            {% endif %}
+        </button>
+        <span>{{ blog.bookmark_user.all|length}}명이 이 글을 북마크 했습니다.</span>
+    </form>
 </div>
 
 <a href="{% url 'update' blog.id %}">글 수정하기</a>

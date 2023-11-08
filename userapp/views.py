@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+
 # Create your views here.
 def signup(request):
     if request.method == 'POST':
@@ -32,3 +33,5 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
+
+
