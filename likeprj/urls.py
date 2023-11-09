@@ -16,19 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import likeapp.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', likeapp.views.index, name='index'),
-    path('create/', likeapp.views.create, name='create'),
-    path('read/', likeapp.views.read, name = 'read'),
-    path('detail/<str:id>/', likeapp.views.detail, name = 'detail'),
-    
-    path('update/<str:id>/', likeapp.views.update, name='update'),
-    
-    path('update/<str:id>/', likeapp.views.update, name = 'update'),
-    path('delete/<str:id>/', likeapp.views.delete, name = 'delete'),
-    
-    path('user/', include('userapp.urls')),
+   
+   path('', include('likeapp.urls')),
+   path('', include('userapp.urls')),
 ]
