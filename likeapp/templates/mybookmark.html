@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>bookmark Page</h1>
+<hr>
+
+{% if user.is_active %}
+<h2>북마크 목록</h2>
+{% for blogs in blogs %}
+<h3><a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a></h3>
+{% endfor %}
+{% endif %}
+{% endblock %}

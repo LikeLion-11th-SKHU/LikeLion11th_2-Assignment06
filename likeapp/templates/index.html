@@ -12,6 +12,7 @@
     <nav>
         <a href="{% url 'create' %}">글 작성하기</a>
         <a href="{% url 'read' %}">글 모아보기</a>
+        <a href="{% url 'mybookmark' %}">북마크</a>
         {% if user.is_active %}
             {{ user.username }} 님 안녕하세요 <a href="{% url 'logout' %}">로그아웃</a>
         {% else %}
