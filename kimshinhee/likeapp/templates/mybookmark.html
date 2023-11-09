@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Bookmark</title>
+{% endblock %}
+
+{% block content %}
+<h1>Bookmark Page</h1>
+<hr>
+{% if user.is_active %}
+  <h2>{{ user.username }}님의 관심목록</h2>
+  {% for blogs in bookmark %}
+    <a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a>
+    <hr>
+  {% empty %}
+    <p>관심목록이 비어있습니다</p>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}

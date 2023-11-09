@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Read</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Read Page</h1>
+    <hr>  
+    {% for blogs in blogs %}
+        <h3><a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a></h3>
+        <p>{{ blogs.pub_date }}</p>
+        <p>{{ blogs.body }}</p>
+        <div>
+        <form action="{% url 'bookmark' blogs.id %}" method="POST"><!--여기서 나는 이전에 쓰던대로 -->
+            {% csrf_token %}
+            <button>
+                {% if user in blogs.bookmark_user.all %}
+                    <i class="fa-solid fa-bookmark"></i>
+                {% else %}
+                    <i class="fa-regular fa-bookmark"></i>
+                {% endif %}
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+{% endblock %}
