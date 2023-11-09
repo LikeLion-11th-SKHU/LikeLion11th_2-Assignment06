@@ -11,9 +11,9 @@
 <body>
     <nav>
         <a href="{% url 'create' %}">글 작성하기</a>
-        <a href="{% url 'read' %}">글 모아보기</a>
+        <a href="{% url 'read' %}">글 모아보기</a><i class="fa-solid fa-check"></i>
         {% if user.is_active %}
-            {{ user.username }} 님 안녕하세요 <a href="{% url 'logout' %}">로그아웃</a>
+            {{ user.username }} 님 안녕하세요 <a href="{% url 'logout' %}">로그아웃</a><i class="fa-solid fa-xmark"></i>
         {% else %}
             <a href="{% url 'signup' %}">회원가입</a>
             <a href="{% url 'login' %}">로그인</a>

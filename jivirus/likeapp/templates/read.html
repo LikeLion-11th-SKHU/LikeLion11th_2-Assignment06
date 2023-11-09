@@ -11,5 +11,15 @@
         <h3><a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a></h3>
         <p>{{ blogs.pub_date }}</p>
         <p>{{ blogs.body }}</p>
+        <form action="{% url 'bookmark' blogs.id %}" method='POST'>
+            {% csrf_token %}
+            <button style="border: none">
+                {% if user in blogs.bookmark_user.all %}
+                <i class ="fas fa-solid fa-bookmark" style="color: black; font-size:17px;"></i>
+                {% else %}
+                <i class ="far fa-regular fa-bookmark" style="color: black; font-size:17px;"></i>
+                {% endif %}
+            </button>
+        </form>
     {% endfor %}
 {% endblock %}
