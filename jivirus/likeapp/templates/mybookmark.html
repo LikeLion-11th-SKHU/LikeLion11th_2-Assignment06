@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>bookmark Page</h1>
+<hr>
+
+  {% if user.is_active %}
+    <h2>{{ user.username }}님의 작성글</h2>
+    {% for blogs in blogs %}
+      <h3><a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a></h3>
+      <hr>
+      <p>{{ blogs.body }}</p>
+        <form action="{% url 'bookmark' blogs.id %}" method='POST'>
+            {% csrf_token %}
+            <button style="border: none">
+                {% if user in blogs.bookmark_user.all %}
+                <i class ="fas fa-solid fa-bookmark" style="color: black; font-size:17px;"></i>
+                {% else %}
+                <i class ="far fa-regular fa-bookmark" style="color: black; font-size:17px;"></i>
+                {% endif %}
+            </button>
+        </form>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
