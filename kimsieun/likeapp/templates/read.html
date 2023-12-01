@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Read</title>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    </head>
+{% endblock %}
+
+{% block content %}
+    <h1>Read Page</h1>
+    <hr>  
+    {% for blogs in blogs %}
+        <h3><a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a></h3>
+        <p>{{ blogs.pub_date }}</p>
+        <p>{{ blogs.body }}</p>
+
+    
+        <form action="{% url 'bookmark' blogs.id %}" method="POST">
+            {% csrf_token %}
+            <button>
+                {% if user in blogs.bookmark_user.all %}
+                <i class="fas fa-solid fa-bookmark" style="color: rgb(0, 0, 0); font-size: 17px;"></i>
+                {% else %}
+                <i class="far fa-regular fa-bookmark" style="color: rgb(0, 0, 0); font-size: 17px;"></i>
+                {% endif %}
+            </button>
+        </form>
+        
+    {% endfor %}
+    
+{% endblock %}

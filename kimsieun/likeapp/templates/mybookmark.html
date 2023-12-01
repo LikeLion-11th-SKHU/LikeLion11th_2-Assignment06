@@ -1,0 +1,29 @@
+{% extends 'index.html' %} 
+
+{% block title %}
+    <title>mybookmark</title>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    </head>
+{% endblock %}
+
+{% block content %} 
+  {% if user.is_active %}
+    
+    <h2>{{ user.username }}님의 북마크 목록</h2>
+    {% for blog in user_bookmarks %}
+    <i class="fas fa-solid fa-star" style= "color: rgb(255, 195, 195); font-size: 17px;"></i>
+
+        <a href="{% url 'detail' blog.id %}">{{ blog.title }}</a> 
+    <i class="fas fa-solid fa-paw" style= "color: rgb(108, 173, 165); font-size: 17px;"></i>
+<hr>
+      {% empty %}
+        <p>북마크 목록이 비어있습니다</p>
+      {% endfor %} 
+    {% else %}
+      <h1>로그인하면 볼 수 있는 페이지입니다.</h1>
+  {% endif %} 
+
+  
+{% endblock %}
+
