@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Signup</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Signup Page</h1>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+        <button type = "submit">가입</button>
+    </form>
+{% endblock %}
